@@ -1,0 +1,13 @@
+const pages: Record<string, { title: string; body: string }> = {
+  about: { title: 'Made for a life well lived.', body: 'Fanuna is a small collection of useful, beautiful things. We choose pieces for their materials, their makers, and the quiet joy they bring to everyday rituals.' },
+  faq: { title: 'The things you want to know.', body: 'Need help with an order or a product? Write to hello@fanuna.example and our team will be happy to help. We usually reply within one business day.' },
+  shipping: { title: 'From our door to yours.', body: 'Orders are carefully packed and prepared for delivery within 2–4 business days. Delivery details and availability are confirmed with you after purchase.' },
+  returns: { title: 'Only the good kind of commitment.', body: 'If something is not right, contact us within 7 days of receiving your order. Items should be unused and in their original condition.' },
+  privacy: { title: 'Your details stay yours.', body: 'We only use the information you share to answer your questions and prepare your order. We do not sell your personal information.' },
+};
+
+export function InfoPage({ slug }: { slug: string }) {
+  const page = pages[slug];
+  if (!page) return <section className="min-h-screen py-8 bg-cream dark:bg-gray-900"><div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"><h1 className="text-3xl font-bold text-primary dark:text-primary-light mb-4">Page not found</h1><button className="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-xl shadow-lg" onClick={() => window.history.back()}>Go back</button></div></section>;
+  return <section className="min-h-screen py-8 bg-cream dark:bg-gray-900"><div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"><header className="mb-8 text-center animate-fadeIn"><h1 className="text-2xl sm:text-3xl font-bold text-primary dark:text-primary-light mb-4 animate-fadeIn">{page.title}</h1><div className="w-24 h-1 bg-secondary mx-auto rounded-full" /></header><article className="bg-white/80 dark:bg-gray-800/80 rounded-xl shadow-md border border-secondary/20 dark:border-secondary/30 p-6 sm:p-8 animate-fadeIn" dir="auto"><p className="text-base sm:text-lg leading-8 text-gray-700 dark:text-gray-200">{page.body}</p></article><div className="text-center mt-8"><button className="inline-flex items-center px-6 py-3 bg-primary hover:bg-primary/90 text-white font-medium rounded-xl shadow-lg transition-all duration-300" onClick={() => { window.history.pushState({}, '', '/'); window.dispatchEvent(new PopStateEvent('popstate')); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>Back to Home</button></div></div></section>;
+}
